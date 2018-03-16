@@ -25,7 +25,7 @@ class AddRoosterRequest extends FormRequest
     {
         return [
             'search_type' => 'required',
-            'code' => 'required'
+            'code'        => 'required',
         ];
     }
 }

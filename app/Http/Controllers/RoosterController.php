@@ -6,8 +6,7 @@ use App\Http\Requests\AddRoosterRequest;
 use App\Http\Services\IcalService;
 use App\Rooster;
 use http\Env\Url;
-use Illuminate\Http\Request;
-Use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Input;
 
 class RoosterController extends Controller
 {
@@ -33,8 +32,6 @@ class RoosterController extends Controller
 
             $rooster->save();
             IcalService::getIcalFromRooster($rooster);
-
-
         }
 
         // return $ical;
@@ -46,10 +43,10 @@ class RoosterController extends Controller
 
         if ($rooster->type == Rooster::GROUP) {
             $segment = Rooster::GROUP;
-        } elseif($rooster->type == Rooster::TEACHER) {
+        } elseif ($rooster->type == Rooster::TEACHER) {
             $segment = Rooster::TEACHER;
         }
 
-        return url($segment . '/' . $rooster->name);
+        return url($segment.'/'.$rooster->name);
     }
 }
