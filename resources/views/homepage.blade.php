@@ -5,27 +5,29 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Saxion rooster in agenda</title>
         <style>
             .vertical-center {
                 min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
                 min-height: 100vh; /* These two lines are counted as one :-)       */
-
                 display: flex;
                 align-items: center;
             }
 
-            .stylish-input-group .input-group-addon{
+            .stylish-input-group .input-group-addon {
                 background: #a6ce39 !important;
             }
-            .stylish-input-group .form-control{
-                border-right:0;
-                box-shadow:0 0 0;
-                border-color:#a6ce39;
+            .stylish-input-group .form-control {
+                border-right: 0;
+                box-shadow: 0 0 0;
+                border-color: #a6ce39;
             }
-            .stylish-input-group button{
-                border:0;
-                background:transparent;
+            .stylish-input-group button {
+                border: 0;
+                background: transparent;
+            }
+            h2 {
+                text-shadow: rgba(0,0,0,0.25) 1px 1px 5px;
             }
         </style>
 
@@ -42,14 +44,43 @@
             <br>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3">
+                    {!! Form::open(['url' => 'add']) !!}
+
+                    <div class="input-group stylish-input-group center-block text-center">
+                        <h5>Ik wil het rooster van een: </h5>
+                        <select name="search_type" id="search_type">
+                            <option value="class">Klas / Class</option>
+                            <option value="teacher">Docent / Teacher</option>
+                        </select>
+                    </div>
+                    <br>
+
                     <div class="input-group stylish-input-group">
-                        <input type="text" class="form-control"  placeholder="Zoek op docent of klas..." >
+                        <input type="text" class="form-control" name="code" placeholder="Docent / Teacher or Klas / Class code..." >
                         <span class="input-group-addon">
                             <button type="submit">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <span class="glyphicon glyphicon-arrow-right"></span>
                             </button>
                         </span>
                     </div>
+
+                    @if (isset($url))
+                        {{ $url }}
+                    @endif
+
+                    @if (count($errors) > 0)
+                        <br>
+                        <div class="alert alert-danger text-left">
+                            <strong>Oeps!</strong> Je hebt iets niet ingevuld!
+                            <br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

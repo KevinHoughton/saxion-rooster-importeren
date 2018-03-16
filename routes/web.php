@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'IndexController@showHomepage');
+Route::post('/add', 'RoosterController@addRooster');
