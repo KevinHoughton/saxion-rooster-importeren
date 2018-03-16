@@ -3,7 +3,6 @@
 namespace App\Http\Services;
 
 use App\Rooster;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
 class IcalService
@@ -13,10 +12,10 @@ class IcalService
         $client = new Client();
 
         if ($rooster->type == Rooster::GROUP) {
-            $ical = $client->get('http://roosters.saxion.nl/ical/group/' . $rooster->name . '.ics');
+            $ical = $client->get('http://roosters.saxion.nl/ical/group/'.$rooster->name.'.ics');
             $rooster->ical = $ical->getBody()->getContents();
-        } elseif($rooster->type == Rooster::TEACHER) {
-            $ical = $client->get('http://roosters.saxion.nl/ical/teacher/' . $rooster->name . '.ics');
+        } elseif ($rooster->type == Rooster::TEACHER) {
+            $ical = $client->get('http://roosters.saxion.nl/ical/teacher/'.$rooster->name.'.ics');
             $rooster->ical = $ical->getBody()->getContents();
         }
 
